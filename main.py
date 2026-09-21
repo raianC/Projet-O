@@ -1,14 +1,34 @@
-from PIL import Image
+# main.py
+import sys
+from PySide6.QtWidgets import * #importe tous les widgets pip install PySide6
+from PySide6.QtCore import * #importe tous les modules de base
+from PySide6 import QtGui
+import src.HomePage as HomePage
+import src.ImageDisplay as ImageDisplay
 
-im=Image.open("images.jpg")
-#im.show()
-alpha = 0.25
-for i in range(im.size[0]):
-    for j in range(im.size[1]//2, im.size[1]):
-        r, g, b = im.getpixel((i,j))
-        im.putpixel((i,j),(int(138*(1-alpha)+r*alpha), int(16*(1-alpha)+g*alpha), int(30*(1-alpha)+b*alpha)))
+if __name__ == "__main__":
+    app = QApplication([])
+    window = QMainWindow()
+    StackList  = {}
 
-im.save("images_modified.jpg")
-im.show()
+    app.setApplicationName("Jesus Image Modifier")
+    app.setApplicationVersion("0.1")
+
+    window.setWindowIcon(QtGui.QIcon("Images/Jesus.jpg"))
+    window.setMinimumSize(QSize(500, 400))
+
+    stack = QStackedWidget()
+    window.setCentralWidget(stack)
+    
+    homePage = HomePage.HomePage(stack,StackList,app)
+    ImagePage = ImageDisplay.ImageDisplay(stack,StackList)
+
+    for name, widget in StackList.items():
+            stack.addWidget(widget)
+
+    stack.setCurrentWidget(StackList["HomePage"])
+
+    window.show()
+    sys.exit(app.exec())
     
     
