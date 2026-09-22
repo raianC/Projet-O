@@ -4,7 +4,7 @@ from PySide6.QtCore import * #importe tous les modules de base
 
 from PIL import Image
 from src.CustomUI import CustomButton
-import src.Jesus as Jesus
+from src.Jesus import Jesus
 
 class HomePage(QWidget):
     def __init__(self,stack,StackList,app):
@@ -46,7 +46,8 @@ class HomePage(QWidget):
 
         im = Image.open(self.path)
         original = im.copy()
-        Jesus.Jesus(im)
+        jesus = Jesus()
+        im = Image.fromarray(jesus.Blessing(im))
         im.save("images_modified.jpg")
         self.showResult(original,im)
 
