@@ -1,7 +1,9 @@
 # Display.py
 from PySide6.QtWidgets import * #importe tous les widgets pip install PySide6
 from PySide6.QtCore import * #importe tous les modules de base
+
 from PIL import Image
+from src.CustomUI import CustomButton
 import src.Jesus as Jesus
 
 class HomePage(QWidget):
@@ -17,16 +19,19 @@ class HomePage(QWidget):
         self.app = app
         self.path = ""
 
-        Blessingbutton = QPushButton("Bless Image")
-        Blessingbutton.clicked.connect(self.ModifyImage)
-        ImportButton = QPushButton("Import Image")
-        ImportButton.clicked.connect(self.download_image)
-        Quitbutton = QPushButton("Quit")
-        Quitbutton.clicked.connect(self.app.quit)
+        self.BlessButton = CustomButton("Images/Bless_b.png","Images/Bless_b_Pressed.png","Images/Bless_b_Hover.png",QRect(93,61,320,65))
 
-        layout.addWidget(Blessingbutton)
-        layout.addWidget(ImportButton)
-        layout.addWidget(Quitbutton)
+        self.BlessButton.clicked.connect(self.ModifyImage)
+        self.ImportButton = QPushButton("Import Image")
+        self.ImportButton.clicked.connect(self.download_image)
+        self.ImportButton.setFixedSize(500,200)
+        self.Quitbutton = QPushButton("Quit")
+        self.Quitbutton.clicked.connect(self.app.quit)
+        self.Quitbutton.setFixedSize(500,200)
+ 
+        layout.addWidget(self.BlessButton, alignment= Qt.AlignCenter)
+        layout.addWidget(self.ImportButton, alignment= Qt.AlignCenter)
+        layout.addWidget(self.Quitbutton, alignment= Qt.AlignCenter)
 
         self.setLayout(layout)
 

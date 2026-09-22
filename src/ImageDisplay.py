@@ -1,7 +1,7 @@
 # ImageDisplay.py
 from PySide6.QtWidgets import * #importe tous les widgets pip install PySide6
 from PySide6.QtCore import * #importe tous les modules de base
-import PySide6.QtGui as QtGui
+from PySide6 import QtGui
 from PIL import Image
 
 class ImageDisplay(QWidget):
