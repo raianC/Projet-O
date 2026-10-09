@@ -1,0 +1,8 @@
+path: C:\Users\raian\Documents\GitHub\Projet-O\dataset_yolo
+
+train: images/train
+val: images/valid
+test: images/test
+
+names:
+  0: water
