@@ -5,11 +5,11 @@ from ultralytics import YOLO
 ROOT = Path(__file__).resolve().parent
 
 MODEL_PATH = (
-    "C:\\Users\\raian\\Documents\\GitHub\\Projet-O\\segment\\runs\\eau\\segmentation-6\\weights\\best.pt"
+    "C:/Users/raian/Documents/GitHub/Projet-O/runs/segment/water_train/weights/best.pt"
 )
 
 # Modifie ce chemin pour sélectionner une image.
-IMAGE_PATH = Path("C:/Users/raian/Documents/GitHub/Projet-O/images.jpg")
+IMAGE_PATH = Path("C:/Users/raian/Documents/GitHub/Projet-O/Mediterranee-img.jpg.webp")
 
 
 def main():

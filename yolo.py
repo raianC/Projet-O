@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parent
 DATA = ROOT / "dataset_yolo" / "data.yaml"
 
 # Modèle de segmentation pré-entraîné
-MODEL = "yolo26n-seg.pt"
+MODEL = "C:/Users/raian/Documents/GitHub/Projet-O/segment/runs/eau/segmentation-6/weights/best.pt"
 
 def main():
     if not DATA.exists():
