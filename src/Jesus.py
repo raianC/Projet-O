@@ -13,23 +13,29 @@ class Jesus():
         brain.setImagePath(image_path)
         water_mask = brain.predict()
         return water_mask
-    
-    def printMask(self,mask):
-        for box in mask:
-            print(box.boxes.data)
 
     def Blessing(self,PIL_image,image_path):
         lab_image = cv2.cvtColor(np.array(PIL_image), cv2.COLOR_RGB2LAB)
         water_mask = self.WaterDetection(image_path)
-        for box in water_mask:
-            l_channel, a_channel, b_channel = cv2.split(lab_image)
-            #a_channel = np.where( ?, 190, a_channel)
-            #b_channel = np.where( ?, 140, b_channel)
+        for result in water_mask:
+            for mask in result.masks.data:
+                mask = mask.cpu().numpy()
+
+                # Resize mask to match the original image
+                mask = cv2.resize(
+                    mask,
+                    (lab_image.shape[1], lab_image.shape[0]),
+                    interpolation=cv2.INTER_NEAREST
+                )
+
+                # Select pixels belonging to the water
+                water_pixels = mask > 0
+
+                # Modify only the water pixels
+                lab_image[water_pixels, 1] = 190
+                lab_image[water_pixels, 2] = 150
         
 
-        
-        # Recombine modified channels
-        lab_image = cv2.merge([l_channel, a_channel, b_channel])
 
         # Convert back to RGB for display/saving
         PIL_image = cv2.cvtColor(lab_image, cv2.COLOR_LAB2RGB)

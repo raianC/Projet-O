@@ -47,11 +47,9 @@ class HomePage(QWidget):
         im = Image.open(self.path)
         original = im.copy()
         jesus = Jesus()
-        water_mask = jesus.WaterDetection(self.path)
-        jesus.printMask(water_mask)
-        #im = Image.fromarray(jesus.Blessing(im))
-        #im.save("images_modified.jpg")
-        #self.showResult(original,im)
+        im = Image.fromarray(jesus.Blessing(im,self.path))
+        im.save("images_modified.jpg")
+        self.showResult(original,im)
 
     def download_image(self):
         temp = QFileDialog.getOpenFileName(self, "Select Image", "", "Image Files (*.png *.jpg *.jpeg *.bmp)")[0]
